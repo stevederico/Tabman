@@ -21,7 +21,7 @@ public extension TabmanBar {
         
         public enum Style {
             case clear
-            case blur(style: UIBlurEffect.Style)
+            case blur(style: UIBlurEffectStyle)
             case solid(color: UIColor)
         }
         

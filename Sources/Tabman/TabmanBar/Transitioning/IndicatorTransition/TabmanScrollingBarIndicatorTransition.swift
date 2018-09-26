@@ -84,7 +84,7 @@ internal class TabmanScrollingBarIndicatorTransition: TabmanIndicatorTransition 
             // compress indicator at boundaries if required
             if bar.indicatorCompresses && isOutOfBounds {
                 let indicatorWidth = bar.indicatorWidth?.constant ?? 0.0
-                let indicatorDiff = (indicatorWidth * abs(progress))
+                let indicatorDiff = (indicatorWidth * fabs(progress))
                 
                 bar.indicatorWidth?.constant = indicatorWidth - indicatorDiff
                 if (progress > 0.0 && !layoutIsRtoL) || (progress < 0.0 && layoutIsRtoL) {

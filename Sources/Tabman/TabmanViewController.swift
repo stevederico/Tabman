@@ -21,14 +21,14 @@ open class TabmanViewController: PageboyViewController, PageboyViewControllerDel
     // MARK: Properties
     
     /// The internally managed Tabman bar.
-    public var tabmanBar: TabmanBar?
+    internal fileprivate(set) var tabmanBar: TabmanBar?
     /// The currently attached TabmanBar (if it exists).
-    public var attachedTabmanBar: TabmanBar?
+    internal var attachedTabmanBar: TabmanBar?
     /// The view that is currently being used to embed the instance managed TabmanBar.
-    public var embeddingView: UIView?
+    internal var embeddingView: UIView?
     
     /// Returns the active bar, prefers attachedTabmanBar if available.
-    public var activeTabmanBar: TabmanBar? {
+    internal var activeTabmanBar: TabmanBar? {
         if let attachedTabmanBar = self.attachedTabmanBar {
             return attachedTabmanBar
         }
@@ -40,7 +40,7 @@ open class TabmanViewController: PageboyViewController, PageboyViewControllerDel
     public var bar = TabmanBar.Config()
     
     /// Internal store for bar component transitions.
-    public var barTransitionStore = TabmanBarTransitionStore()
+    internal var barTransitionStore = TabmanBarTransitionStore()
     
     /// Whether any UIScrollView in child view controllers should be
     /// automatically insetted to display below the TabmanBar.
@@ -64,7 +64,7 @@ open class TabmanViewController: PageboyViewController, PageboyViewControllerDel
             autoInsetter.isEnabled = automaticallyAdjustsChildViewInsets
         }
     }
-    public let autoInsetter = AutoInsetter()
+    internal let autoInsetter = AutoInsetter()
     
     // MARK: Lifecycle
     
@@ -108,7 +108,7 @@ open class TabmanViewController: PageboyViewController, PageboyViewControllerDel
     
     // MARK: PageboyViewControllerDelegate
     
-    public var isScrollingAnimated: Bool = false
+    private var isScrollingAnimated: Bool = false
     
     open func pageboyViewController(_ pageboyViewController: PageboyViewController,
                                     willScrollToPageAt index: Int,
@@ -158,7 +158,7 @@ open class TabmanViewController: PageboyViewController, PageboyViewControllerDel
     /// - Parameters:
     ///   - position: The new position.
     ///   - direction: The direction of travel.
-    public func updateBar(withPosition position: CGFloat,
+    private func updateBar(withPosition position: CGFloat,
                            direction: PageboyViewController.NavigationDirection) {
         
         let viewControllersCount = self.pageCount ?? 0
@@ -174,7 +174,7 @@ open class TabmanViewController: PageboyViewController, PageboyViewControllerDel
     
     /// Reload the bar with the currently active position.
     /// Called after any layout changes.
-    public func reloadBarWithCurrentPosition() {
+    private func reloadBarWithCurrentPosition() {
         guard let currentPosition = self.currentPosition, !isScrollingAnimated else {
             return
         }
@@ -185,7 +185,7 @@ open class TabmanViewController: PageboyViewController, PageboyViewControllerDel
 }
 
 // MARK: - Bar Reloading / Layout
-public extension TabmanViewController {
+internal extension TabmanViewController {
     
     /// Clear the existing bar from the screen.
     ///
