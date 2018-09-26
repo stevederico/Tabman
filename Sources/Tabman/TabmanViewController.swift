@@ -28,7 +28,7 @@ open class TabmanViewController: PageboyViewController, PageboyViewControllerDel
     internal var embeddingView: UIView?
     
     /// Returns the active bar, prefers attachedTabmanBar if available.
-    internal var activeTabmanBar: TabmanBar? {
+    public var activeTabmanBar: TabmanBar? {
         if let attachedTabmanBar = self.attachedTabmanBar {
             return attachedTabmanBar
         }
